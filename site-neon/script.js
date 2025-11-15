@@ -9,6 +9,37 @@
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// ==========================================================================
+// DYNAMIC LINK TRACKING - Atualiza UTM baseado no slug da URL
+// ==========================================================================
+
+/**
+ * Atualiza todos os links da página baseado no slug da URL
+ * Ex: dominio.com/axt27 -> todos os links terão utm_campaign=Gads_axt27
+ */
+function updateDynamicLinks() {
+    // Pegar o pathname da URL (ex: "/axt27" ou "/")
+    const pathname = window.location.pathname;
+    
+    // Extrair o slug (tudo depois da última barra, sem a barra)
+    const slug = pathname.split('/').filter(Boolean).pop() || 'axt2';
+    
+    // URL base dos links
+    const baseUrl = 'https://go.aff.24gamespartners.com/ex9wjlb9?utm_campaign=Gads_';
+    
+    // Construir URL final
+    const finalUrl = baseUrl + slug;
+    
+    // Selecionar todos os links dinâmicos e atualizar
+    const dynamicLinks = document.querySelectorAll('.dynamic-link');
+    dynamicLinks.forEach(link => {
+        link.href = finalUrl;
+    });
+    
+    console.log(`Links atualizados com slug: ${slug}`);
+    console.log(`URL final: ${finalUrl}`);
+}
+
 /**
  * Verifica si el usuario prefiere movimiento reducido
  */
@@ -205,6 +236,9 @@ function initLazyLoading() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Sitio Neon cargado');
     console.log('Prefers reduced motion:', prefersReducedMotion);
+    
+    // Atualizar links dinâmicos baseado no slug da URL
+    updateDynamicLinks();
     
     // Inicializar carrusel infinito (sempre rodando)
     const carousel = new InfiniteCarousel('carouselTrack');

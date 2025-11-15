@@ -653,13 +653,16 @@ button {
 
 /* Botón CTA (verde discreto, SIN glow) */
 .btn-cta {
+    display: inline-block;
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--negro-base);
     background: var(--verde-neon);
     border-radius: 8px;
+    text-decoration: none;
     transition: all var(--transition-fast);
+    cursor: pointer;
     /* NO glow - excepción explícita */
 }
 
@@ -701,13 +704,16 @@ button {
 
 /* Botón secundario (verde discreto, sin glow) */
 .btn-secondary {
+    display: inline-block;
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--negro-base);
     background: var(--verde-neon);
     border-radius: 8px;
+    text-decoration: none;
     transition: all var(--transition-fast);
+    cursor: pointer;
 }
 
 .btn-secondary:hover {

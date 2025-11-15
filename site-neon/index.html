@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Un espacio pensado para mostrar a nuestros embajadores, ideas, y experiencias que conectan con el presente y el futuro del entretenimiento.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Innovación y energía para una comunidad que no se detiene">
+    <meta property="og:description" content="Un espacio pensado para mostrar a nuestros embajadores, ideas, y experiencias que conectan con el presente y el futuro del entretenimiento.">
+    <meta property="og:type" content="website">
+    
+    <title>Innovación y energía para una comunidad que no se detiene</title>
+    
+    <!-- Google Fonts - Tech Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <!-- SECCIÓN 1: HERO (Split Layout) -->
+        <!-- IMPORTANTE: Reemplazar el background-image en styles.css (.hero-section::before) -->
+        <!-- con la imagen proporcionada por el cliente -->
+        <section class="hero-section" id="hero">
+            <div class="container hero-container">
+                <div class="hero-left">
+                    <h1 class="hero-title">
+                        Innovación y <span class="word-glow">energía</span> para una comunidad que no se detiene
+                    </h1>
+                    <p class="hero-subtitle">
+                        Un espacio pensado para mostrar a nuestros embajadores, ideas, y experiencias que conectan con el presente y el futuro del entretenimiento.
+                    </p>
+                </div>
+                <div class="hero-right">
+                    <!-- 3 personas em camadas sobrepostas com animações sequenciais -->
+                    <div class="people-container">
+                        <!-- Vicente - Centro (entra primeiro) -->
+                        <img src="imagens/vicente preto e branco.png" alt="Vicente" class="person person-vicente">
+                        
+                        <!-- Quiroga - Esquerda/Trás (entra segundo) -->
+                        <img src="imagens/quiroga preto e branco.png" alt="Quiroga" class="person person-quiroga">
+                        
+                        <!-- Elian - Direita/Trás (entra terceiro) -->
+                        <img src="imagens/elian preto e branco.png" alt="Elian" class="person person-elian">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: Carrusel + Texto Fútbol + Bullets Glass -->
+        <section class="carousel-section" id="carousel-section">
+            <div class="container">
+                <!-- 2.1 Carrusel infinito de íconos -->
+                <div class="carousel-wrapper">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Los íconos se duplican para el efecto infinito -->
+                        <div class="carousel-icons">
+                            <img src="assets/icon-gamepad.svg" alt="Gamepad" class="carousel-icon">
+                            <img src="assets/icon-chip.svg" alt="Chip" class="carousel-icon">
+                            <img src="assets/icon-shield.svg" alt="Escudo" class="carousel-icon">
+                            <img src="assets/icon-ball.svg" alt="Balón" class="carousel-icon">
+                            <img src="assets/icon-headset.svg" alt="Headset" class="carousel-icon">
+                            <img src="assets/icon-trophy.svg" alt="Trophy" class="carousel-icon">
+                            <img src="assets/icon-star.svg" alt="Estrella" class="carousel-icon">
+                            <img src="assets/icon-controller.svg" alt="Controller" class="carousel-icon">
+                        </div>
+                        <!-- Duplicado para loop infinito -->
+                        <div class="carousel-icons" aria-hidden="true">
+                            <img src="assets/icon-gamepad.svg" alt="" class="carousel-icon">
+                            <img src="assets/icon-chip.svg" alt="" class="carousel-icon">
+                            <img src="assets/icon-shield.svg" alt="" class="carousel-icon">
+                            <img src="assets/icon-ball.svg" alt="" class="carousel-icon">
+                            <img src="assets/icon-headset.svg" alt="" class="carousel-icon">
+                            <img src="assets/icon-trophy.svg" alt="" class="carousel-icon">
+                            <img src="assets/icon-star.svg" alt="" class="carousel-icon">
+                            <img src="assets/icon-controller.svg" alt="" class="carousel-icon">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.2 Headline + Texto sobre fútbol -->
+                <div class="football-content">
+                    <h2 class="section-title">
+                        El fútbol chileno, una historia <span class="word-glow">viva</span>
+                    </h2>
+                    <p class="large-text">
+                        El campeonato chileno convoca a hinchas de norte a sur, con clásicos que marcan generaciones y una identidad que crece cada temporada. La Selección de Chile, con sus momentos inolvidables, inspira a una comunidad que vive el juego con intensidad. Entre estadios, barrios y pantallas, el fútbol sigue ampliando su alcance e influencia, conectando pasión, cultura y nuevas audiencias.
+                    </p>
+                </div>
+
+                <!-- 2.3 Bullets Glass Effect -->
+                <div class="glass-grid">
+                    <article class="glass-card">
+                        <h3 class="glass-title">Jugar es diversión pura</h3>
+                        <p class="glass-text">Disfruta momentos simples que se transforman en recuerdos.</p>
+                    </article>
+                    
+                    <article class="glass-card">
+                        <h3 class="glass-title">Entretenimiento ante todo</h3>
+                        <p class="glass-text">Nuestro sitio existe para acompañar y entretener a la comunidad.</p>
+                    </article>
+                    
+                    <article class="glass-card">
+                        <h3 class="glass-title">Estadísticas que cuentan historias</h3>
+                        <p class="glass-text">Los números del fútbol revelan patrones, contextos y oportunidades.</p>
+                    </article>
+                    
+                    <article class="glass-card">
+                        <h3 class="glass-title">Análisis de patrones</h3>
+                        <p class="glass-text">Mirar tendencias ayuda a entender el juego con otra perspectiva.</p>
+                    </article>
+                    
+                    <article class="glass-card">
+                        <h3 class="glass-title">En familia, mejor</h3>
+                        <p class="glass-text">Compartir el juego con los tuyos hace cada experiencia más rica.</p>
+                    </article>
+                    
+                    <article class="glass-card">
+                        <h3 class="glass-title">Con tu equipo, siempre</h3>
+                        <p class="glass-text">Apoyar a tu club de corazón le da sentido a cada jugada.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: CTA con balones neon flotando -->
+        <section class="cta-section" id="cta-section">
+            <!-- Balones flotando (background decorativo) -->
+            <div class="floating-balls" aria-hidden="true">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-1">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-2">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-3">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-4">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-5">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-6">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-7">
+                <img src="assets/ball-neon.svg" alt="" class="floating-ball ball-8">
+            </div>
+            
+            <div class="container cta-content">
+                <h2 class="section-title cta-title">
+                    Puedes <span class="word-glow">divertirte</span> hoy y conocer la casa de los streamers en Chile
+                </h2>
+                <p class="cta-subtitle">
+                    La casa de los streamers en Chile es un lugar para entretenerte y, al mismo tiempo, seguir al equipo que más amas.
+                </p>
+                <button class="btn-cta" aria-label="Conocer más">Conocer</button>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: Entretenimiento en la rutina -->
+        <section class="routine-section" id="routine-section">
+            <div class="container routine-content">
+                <h2 class="section-title">
+                    El entretenimiento también puede ser parte de tu <span class="word-glow">rutina</span>
+                </h2>
+                <p class="large-text">
+                    Integrar tiempo de ocio y contenido que te gusta puede hacer tus días más livianos. La clave está en elegir lo que te suma: comunidad, emoción y momentos que realmente disfrutas.
+                </p>
+                <button class="btn-secondary" aria-label="Saber más sobre entretenimiento">Saber más</button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+            <div class="container footer-content">
+                <p class="footer-main">Todos los derechos reservados 2026</p>
+                <p class="footer-disclaimer">Este sitio tiene el objetivo informativo de comunicar beneficios a sus lectores.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
+

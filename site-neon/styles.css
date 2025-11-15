@@ -1,0 +1,797 @@
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores */
+    --negro-base: #0A0B0D;
+    --gris-profundo: #0F1216;
+    --verde-neon: #00FF7F;
+    --verde-neon-alt: #10B981;
+    --verde-neon-bright: #00E676;
+    --texto-principal: #FFFFFF;
+    --texto-secundario: #C9D1D9;
+    
+    /* Tipografía */
+    --font-tech: 'Orbitron', sans-serif;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    
+    /* Transiciones */
+    --transition-fast: 200ms ease-out;
+    --transition-normal: 350ms ease-out;
+    --transition-slow: 500ms ease-out;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+body {
+    font-family: var(--font-tech);
+    background-color: var(--negro-base);
+    color: var(--texto-principal);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* ==========================================================================
+   UTILIDADES REUTILIZABLES
+   ========================================================================== */
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+}
+
+/* Glow Verde */
+.glow-green {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 127, 0.4))
+            drop-shadow(0 0 40px rgba(0, 255, 127, 0.2));
+}
+
+/* Palabra Brillante (Gradiente Animado) */
+.word-glow {
+    background: linear-gradient(
+        90deg,
+        var(--verde-neon) 0%,
+        var(--verde-neon-bright) 25%,
+        var(--verde-neon) 50%,
+        var(--verde-neon-bright) 75%,
+        var(--verde-neon) 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    filter: drop-shadow(0 0 12px rgba(0, 255, 127, 0.6));
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* Fade Away (Scroll Out) */
+.fade-away {
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity var(--transition-normal),
+                transform var(--transition-normal);
+}
+
+/* Glass Effect */
+.glass {
+    background: rgba(15, 18, 22, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 255, 127, 0.15);
+}
+
+/* Mask Fade X (para bordes del carrusel) */
+.mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+}
+
+/* ==========================================================================
+   SECCIÓN 1: HERO
+   ========================================================================== */
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    overflow: hidden;
+}
+
+/* Background con overlay oscuro */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(135deg, rgba(10, 11, 13, 0.75) 0%, rgba(15, 18, 22, 0.70) 100%),
+        url('imagens/background sessao 1.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+/* Grain/ruido sutil opcional */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="300" height="300" filter="url(%23noise)" opacity="0.03"/></svg>');
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.hero-left {
+    z-index: 1;
+    padding: var(--spacing-md);
+    background: rgba(15, 18, 22, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    filter: drop-shadow(0 0 30px rgba(0, 255, 127, 0.25));
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    text-shadow: 0 0 20px rgba(0, 255, 127, 0.3);
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--texto-secundario);
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+.hero-right {
+    position: relative;
+    min-height: 650px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* Container das 3 pessoas */
+.people-container {
+    position: relative;
+    width: 100%;
+    height: 750px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* Estilos base para as pessoas */
+.person {
+    position: absolute;
+    bottom: -100px;
+    height: 700px;
+    width: auto;
+    object-fit: cover;
+    object-position: top center;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Vicente - Centro (entra primeiro - 0.5s) */
+.person-vicente {
+    z-index: 3;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+/* Quiroga - Esquerda/Trás (entra segundo - 1.2s) */
+.person-quiroga {
+    z-index: 2;
+    left: 15%;
+    transform: translateX(-50%) translateY(30px);
+    animation: fadeInUp 1s ease-out 1.2s forwards;
+}
+
+/* Elian - Direita/Trás (entra terceiro - 1.9s) */
+.person-elian {
+    z-index: 1;
+    right: 5%;
+    transform: translateX(50%) translateY(30px);
+    animation: fadeInUp 1s ease-out 1.9s forwards;
+}
+
+/* Animação clean de entrada */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Ajuste para Quiroga e Elian (mantém deslocamento X) */
+.person-quiroga {
+    animation: fadeInUpQuiroga 1s ease-out 1.2s forwards;
+}
+
+.person-elian {
+    animation: fadeInUpElian 1s ease-out 1.9s forwards;
+}
+
+@keyframes fadeInUpQuiroga {
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes fadeInUpElian {
+    to {
+        opacity: 1;
+        transform: translateX(50%) translateY(0);
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-right {
+        display: flex;
+        min-height: 450px;
+        order: 2;
+        margin-top: var(--spacing-md);
+    }
+    
+    .hero-left {
+        order: 1;
+    }
+    
+    .people-container {
+        height: 500px;
+    }
+    
+    .person {
+        height: 480px;
+        bottom: -80px;
+    }
+    
+    /* Ajustar posicionamento no mobile */
+    .person-vicente {
+        left: 50%;
+    }
+    
+    .person-quiroga {
+        left: 20%;
+    }
+    
+    .person-elian {
+        right: 10%;
+    }
+    
+    /* Animações ajustadas para mobile */
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    }
+    
+    @keyframes fadeInUpQuiroga {
+        to {
+            opacity: 1;
+            transform: translateX(-40%) translateY(0);
+        }
+    }
+    
+    @keyframes fadeInUpElian {
+        to {
+            opacity: 1;
+            transform: translateX(40%) translateY(0);
+        }
+    }
+}
+
+/* ==========================================================================
+   SECCIÓN 2: CARRUSEL + FÚTBOL + GLASS CARDS
+   ========================================================================== */
+
+.carousel-section {
+    padding: var(--spacing-xl) 0;
+    position: relative;
+    background: linear-gradient(180deg, var(--negro-base) 0%, var(--gris-profundo) 100%);
+}
+
+/* 2.1 CARRUSEL INFINITO */
+.carousel-wrapper {
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+}
+
+.carousel-track {
+    overflow: hidden;
+    padding: var(--spacing-md) 0;
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+}
+
+.carousel-icons {
+    display: flex;
+    gap: var(--spacing-lg);
+    animation: scrollRight 40s linear infinite;
+    width: max-content;
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.carousel-icon {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 15px rgba(0, 255, 127, 0.5));
+    transition: transform var(--transition-fast);
+}
+
+.carousel-icon:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+    .carousel-icon {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* 2.2 CONTENIDO DE FÚTBOL */
+.football-content {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-md);
+}
+
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-md);
+    filter: drop-shadow(0 0 20px rgba(0, 255, 127, 0.3));
+}
+
+.large-text {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--texto-secundario);
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 2.3 GLASS CARDS */
+.glass-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+@media (min-width: 640px) {
+    .glass-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .glass-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.glass-card {
+    background: rgba(15, 18, 22, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 127, 0.2);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    transition: all var(--transition-normal);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(0, 255, 127, 0.1);
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(0, 255, 127, 0.25);
+    border-color: rgba(0, 255, 127, 0.4);
+}
+
+.glass-title {
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--verde-neon);
+}
+
+.glass-text {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: var(--texto-secundario);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   SECCIÓN 3: CTA CON BALONES FLOTANDO
+   ========================================================================== */
+
+.cta-section {
+    position: relative;
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, var(--gris-profundo) 0%, #0D0E10 100%);
+    overflow: hidden;
+}
+
+/* Balones flotando */
+.floating-balls {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-ball {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    opacity: 0.15;
+    filter: drop-shadow(0 0 20px var(--verde-neon));
+}
+
+.ball-1 {
+    top: 10%;
+    left: 5%;
+    animation: float1 8s ease-in-out infinite;
+}
+
+.ball-2 {
+    top: 20%;
+    right: 10%;
+    animation: float2 10s ease-in-out infinite;
+}
+
+.ball-3 {
+    top: 50%;
+    left: 15%;
+    animation: float3 9s ease-in-out infinite;
+}
+
+.ball-4 {
+    top: 70%;
+    right: 5%;
+    animation: float1 11s ease-in-out infinite;
+}
+
+.ball-5 {
+    top: 30%;
+    left: 50%;
+    animation: float2 7s ease-in-out infinite;
+}
+
+.ball-6 {
+    top: 80%;
+    left: 30%;
+    animation: float3 12s ease-in-out infinite;
+}
+
+.ball-7 {
+    top: 15%;
+    right: 30%;
+    animation: float1 9.5s ease-in-out infinite;
+}
+
+.ball-8 {
+    top: 60%;
+    right: 40%;
+    animation: float2 8.5s ease-in-out infinite;
+}
+
+@keyframes float1 {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+}
+
+@keyframes float2 {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    50% {
+        transform: translateY(-15px) translateX(10px) scale(1.08);
+    }
+}
+
+@keyframes float3 {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    50% {
+        transform: translateY(-25px) translateX(-10px) scale(1.06);
+    }
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+}
+
+.cta-title {
+    margin-bottom: var(--spacing-md);
+}
+
+.cta-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--texto-secundario);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.7;
+}
+
+/* Botón CTA (verde discreto, SIN glow) */
+.btn-cta {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--negro-base);
+    background: var(--verde-neon);
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+    /* NO glow - excepción explícita */
+}
+
+.btn-cta:hover {
+    background: var(--verde-neon-bright);
+    transform: translateY(-1px);
+}
+
+.btn-cta:active {
+    transform: translateY(0);
+}
+
+.btn-cta:focus-visible {
+    outline: 2px solid var(--verde-neon);
+    outline-offset: 4px;
+}
+
+/* ==========================================================================
+   SECCIÓN 4: ENTRETENIMIENTO EN LA RUTINA
+   ========================================================================== */
+
+.routine-section {
+    padding: var(--spacing-xl) 0;
+    background: var(--negro-base);
+}
+
+.routine-content {
+    text-align: center;
+    max-width: 900px;
+}
+
+.routine-content .section-title {
+    margin-bottom: var(--spacing-md);
+}
+
+.routine-content .large-text {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Botón secundario (verde discreto, sin glow) */
+.btn-secondary {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--negro-base);
+    background: var(--verde-neon);
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+    background: var(--verde-neon-bright);
+    transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary:focus-visible {
+    outline: 2px solid var(--verde-neon);
+    outline-offset: 4px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.site-footer {
+    padding: var(--spacing-lg) 0;
+    background: var(--gris-profundo);
+    border-top: 1px solid rgba(0, 255, 127, 0.2);
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-main {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--texto-principal);
+}
+
+.footer-disclaimer {
+    font-size: 0.875rem;
+    color: var(--texto-secundario);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   RESPONSIVO - AJUSTES FINALES
+   ========================================================================== */
+
+@media (max-width: 767px) {
+    :root {
+        --spacing-lg: 3rem;
+        --spacing-xl: 4rem;
+    }
+    
+    .floating-ball {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ==========================================================================
+   ACCESIBILIDAD
+   ========================================================================== */
+
+/* Focus visible para teclado */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--verde-neon);
+    outline-offset: 4px;
+}
+
+/* Skip to content (opcional) */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--verde-neon);
+    color: var(--negro-base);
+    padding: 0.5rem 1rem;
+    z-index: 100;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.skip-to-content:focus {
+    top: 0;
+}
+

@@ -1,0 +1,34 @@
+✅ IMAGENS CONFIGURADAS E FUNCIONANDO
+
+📂 Arquivos na pasta imagens/:
+================================
+
+1. background sessao 1.png
+   ↳ Usado em: styles.css (linha 185)
+   ↳ Background da primeira seção (Hero)
+
+2. vicente preto e branco.png
+   ↳ Usado em: index.html (linha 46)
+   ↳ Pessoa do CENTRO (z-index: 3) - Entra primeiro
+
+3. quiroga preto e branco.png
+   ↳ Usado em: index.html (linha 49)
+   ↳ Pessoa da ESQUERDA (z-index: 2) - Entra segundo
+
+4. elian preto e branco.png
+   ↳ Usado em: index.html (linha 52)
+   ↳ Pessoa da DIREITA (z-index: 1) - Entra terceiro
+
+
+⚠️ IMPORTANTE:
+==============
+- NÃO renomeie estes arquivos!
+- Se renomear, precisa atualizar no HTML e CSS também
+- Os nomes têm ESPAÇOS - isso é normal e está funcionando
+- Formato PNG está perfeito (mantém transparência se houver)
+
+
+✅ STATUS: Todas as imagens configuradas corretamente!
+
+
+

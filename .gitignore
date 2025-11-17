@@ -1,8 +1,0 @@
-# Arquivos e diretórios a ignorar
-.DS_Store
-node_modules/
-*.log
-.env
-.vscode/
-.idea/
-

@@ -406,3 +406,135 @@ window.addEventListener('load', () => {
     initParticles();
 });
 
+// ==========================================================================
+// THREE.JS SHADER ANIMATION - Verde Neon
+// ==========================================================================
+
+function initShaderAnimation() {
+    // Verificar se THREE.js está disponível
+    if (typeof THREE === 'undefined') {
+        console.warn('Three.js library not loaded');
+        return;
+    }
+    
+    const canvas = document.getElementById('shader-canvas');
+    if (!canvas) {
+        console.warn('Shader canvas not found');
+        return;
+    }
+    
+    // Vertex shader
+    const vertexShader = `
+        void main() {
+            gl_Position = vec4(position, 1.0);
+        }
+    `;
+    
+    // Fragment shader adaptado para verde neon
+    const fragmentShader = `
+        #define TWO_PI 6.2831853072
+        #define PI 3.14159265359
+        precision highp float;
+        uniform vec2 resolution;
+        uniform float time;
+        
+        void main(void) {
+            vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
+            float t = time * 0.05;
+            float lineWidth = 0.002;
+            vec3 color = vec3(0.0);
+            
+            // Criar padrão de ondas concentricas
+            for(int j = 0; j < 3; j++){
+                for(int i = 0; i < 5; i++){
+                    float wave = lineWidth * float(i * i) / abs(fract(t - 0.01 * float(j) + float(i) * 0.01) * 5.0 - length(uv) + mod(uv.x + uv.y, 0.2));
+                    
+                    // Verde neon (#00FF7F = RGB 0, 255, 127)
+                    // Converter para 0.0-1.0: R=0.0, G=1.0, B=0.498
+                    color.r += wave * 0.0;   // Sem vermelho
+                    color.g += wave * 1.0;   // Verde total
+                    color.b += wave * 0.5;   // Meio azul (para o tom neon)
+                }
+            }
+            
+            // Adicionar um toque de variação nas cores
+            color.g = clamp(color.g, 0.0, 1.0);
+            color.b = clamp(color.b * 0.6, 0.0, 1.0);
+            
+            gl_FragColor = vec4(color, 1.0);
+        }
+    `;
+    
+    // Inicializar Three.js
+    const camera = new THREE.Camera();
+    camera.position.z = 1;
+    
+    const scene = new THREE.Scene();
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    
+    const uniforms = {
+        time: { type: "f", value: 1.0 },
+        resolution: { type: "v2", value: new THREE.Vector2() }
+    };
+    
+    const material = new THREE.ShaderMaterial({
+        uniforms: uniforms,
+        vertexShader: vertexShader,
+        fragmentShader: fragmentShader
+    });
+    
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    
+    const renderer = new THREE.WebGLRenderer({ 
+        canvas: canvas,
+        antialias: true,
+        alpha: true
+    });
+    
+    renderer.setPixelRatio(window.devicePixelRatio);
+    
+    // Handle window resize
+    const onWindowResize = () => {
+        const section = document.getElementById('routine-section');
+        if (!section) return;
+        
+        const width = section.clientWidth;
+        const height = section.clientHeight;
+        
+        renderer.setSize(width, height);
+        uniforms.resolution.value.x = width;
+        uniforms.resolution.value.y = height;
+    };
+    
+    // Initial resize
+    onWindowResize();
+    window.addEventListener('resize', onWindowResize, false);
+    
+    // Animation loop
+    let animationId;
+    const animate = () => {
+        animationId = requestAnimationFrame(animate);
+        uniforms.time.value += 0.05;
+        renderer.render(scene, camera);
+    };
+    
+    // Start animation
+    animate();
+    
+    console.log('Shader animation inicializado com tema verde neon');
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+        cancelAnimationFrame(animationId);
+        renderer.dispose();
+        geometry.dispose();
+        material.dispose();
+    });
+}
+
+// Inicializar shader quando a página carregar
+window.addEventListener('load', () => {
+    initShaderAnimation();
+});
+
